@@ -1,7 +1,6 @@
 import sql from "../config/database.js"
 
 export const userModel = {
-  // Create a new user
   async createUser(userData) {
     const { name, email, password } = userData
     const result = await sql`

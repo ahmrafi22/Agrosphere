@@ -1,22 +1,20 @@
 import Cookies from "js-cookie"
 
 export const setAuthCookies = (user) => {
-  // Set user data in localStorage
+
   if (typeof window !== "undefined") {
     localStorage.setItem("user", JSON.stringify(user))
     localStorage.setItem("userId", user.id)
   }
 
-  // Set client-side cookie for easy access (this will be synced with server cookie)
   Cookies.set("user-id", user.id, {
-    expires: 7, // 7 days
+    expires: 7, 
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
   })
 
-  // Set HTTP-only cookie for server-side authentication
   Cookies.set("auth-token", user.id, {
-    expires: 7, // 7 days
+    expires: 7,
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
   })

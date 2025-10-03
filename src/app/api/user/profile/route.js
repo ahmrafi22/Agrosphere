@@ -8,18 +8,14 @@ export async function GET(request) {
     if (!authToken) {
       return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 })
     }
-
-    // Check if requesting another user's profile
     const url = new URL(request.url)
     const userId = url.searchParams.get('userId')
 
     let result
 
     if (userId) {
-      // Get another user's profile
       result = await userController.getUserProfileById(authToken, userId)
     } else {
-      // Get current user's profile
       result = await userController.getUserProfile(authToken)
     }
 
