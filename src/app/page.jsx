@@ -5,13 +5,15 @@ import { HeroSection } from "./_components/hero-section"
 import { FeaturesSection } from "./_components/features-section"
 import { Footer } from "./_components/footer"
 import CurvedLoop from "./_components/curved-loop"
+import { ReactLenis } from 'lenis/react'
 
 export default function Home() {
   return (
-    <div className="relative w-full min-h-screen">
-      <Navbar />
+    <ReactLenis root>
+      <div className="relative w-full min-h-screen">
+        <Navbar />
 
-      <div className="relative z-10">
+        <div className="relative z-10">
         {/* First Page - Hero */}
         <div id="home" className="bg-white">
           <HeroSection />
@@ -39,5 +41,6 @@ export default function Home() {
         <Footer />
       </div>
     </div>
+    </ReactLenis>
   )
 }

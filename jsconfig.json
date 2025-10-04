@@ -14,7 +14,7 @@
     "allowJs": true,
     "noEmit": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "target": "es6",
     "jsx": "preserve",
     "esModuleInterop": true,

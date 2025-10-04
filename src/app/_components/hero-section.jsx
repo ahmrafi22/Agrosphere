@@ -11,7 +11,7 @@ export function HeroSection() {
         <section id="about" className="h-screen w-full relative overflow-hidden">
             <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                animate={{ opacity: 1.1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
                 className="absolute inset-0 z-0"
                 style={{
