@@ -1,6 +1,6 @@
 # 🌾 Agrosphere - Smart Farming Companion
 
-![Land Management](public/app/start.png)
+![Hero](public/app/Start.png)
 
 **Agrosphere** is a comprehensive digital farming platform that empowers farmers with modern tools for land management, crop planning, financial tracking, and community networking. Built with Next.js and modern web technologies, it provides an all-in-one solution for agricultural management.
 
