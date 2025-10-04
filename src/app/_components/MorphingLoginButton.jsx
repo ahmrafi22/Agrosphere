@@ -3,6 +3,7 @@
 import React from "react"
 import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
+import { createPortal } from "react-dom"
 import { ChevronUp, Loader, Eye, EyeOff } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { PiArrowCircleRightFill } from "react-icons/pi"
@@ -239,20 +240,7 @@ export function MorphingLoginButton() {
   )
 
   return (
-    <div className="relative">
-      {/* Blur background overlay */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-            onClick={() => setOpen(false)}
-          />
-        )}
-      </AnimatePresence>
-
+    <div className="relative font-prosto-one font-normal">
       <PopoverForm
         open={open}
         setOpen={setOpen}
@@ -289,92 +277,116 @@ function PopoverForm({
   showCloseButton = false,
 }) {
   const ref = useRef(null)
+  const [mounted, setMounted] = useState(false)
+  
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  
   useClickOutside(ref, () => setOpen(false))
 
   return (
-    <div key={title} className="flex min-h-[300px] w-full items-center justify-center">
-      {/* Morphing Button */}
-      <motion.label
-        layoutId={`${title}-wrapper`}
-        className="cursor-pointer"
-        onClick={() => setOpen(true)}
-        style={{ borderRadius: open ? 10 : 9999 }}
-      >
-        <input type="checkbox" checked={open} className="peer hidden" readOnly />
-        <motion.div
-          className="group relative flex w-fit items-center gap-3 overflow-hidden p-3 px-6 font-extrabold text-black transition-all hover:text-white active:scale-90"
+    <>
+      <div key={title} className="flex min-h-[300px] w-full items-center justify-center">
+        {/* Morphing Button */}
+        <motion.label
+          layoutId={`${title}-wrapper`}
+          className="cursor-pointer"
+          onClick={() => setOpen(true)}
           style={{ borderRadius: open ? 10 : 9999 }}
         >
-          <motion.div layoutId={`${title}-title`} className="z-10">
-            <p className="font-extrabold">{title.toUpperCase()}</p>
-          </motion.div>
-          <div className="relative">
-            <div className="absolute inset-0 bg-black rounded-full scale-0 group-hover:scale-[1500%] transition-transform duration-500 origin-center"></div>
-            <PiArrowCircleRightFill className="w-6 h-6 relative z-10 text-black group-hover:text-white transition-colors duration-200" />
-          </div>
-        </motion.div>
-      </motion.label>
-
-      <AnimatePresence>
-        {open && (
+          <input type="checkbox" checked={open} className="peer hidden" readOnly />
           <motion.div
-            layoutId={`${title}-wrapper`}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-muted shadow-[0_0_0_1px_rgba(0,0,0,0.08),0px_1px_2px_rgba(0,0,0,0.04)] outline-none z-50"
-            ref={ref}
-            style={{ borderRadius: 10, width, height }}
+            className="group relative flex w-fit items-center gap-3 overflow-hidden p-3 px-6 font-extrabold text-white bg-orange-500 transition-all hover:text-white active:scale-90"
+            style={{ borderRadius: open ? 10 : 9999 }}
           >
-            <motion.span
-              aria-hidden
-              className="absolute left-4 top-[17px] text-sm text-muted-foreground data-[success]:text-transparent"
-              layoutId={`${title}-title`}
-              data-success={showSuccess}
-            >
-              {title}
-            </motion.span>
-            {showCloseButton && (
-              <div className="absolute -top-[5px] left-1/2 transform -translate-x-1/2 w-[12px] h-[26px] flex items-center justify-center z-20">
-                <button
-                  onClick={() => setOpen(false)}
-                  className="absolute z-10 -mt-1 flex items-center justify-center w-[10px] h-[6px] text-muted-foreground hover:text-foreground focus:outline-none rounded-full"
-                  aria-label="Close"
-                >
-                  <ChevronUp className="text-muted-foreground/80" />
-                </button>
-                <PopoverFormCutOutTopIcon />
-              </div>
-            )}
-            <AnimatePresence mode="popLayout">
-              {showSuccess ? (
-                <motion.div
-                  key="success"
-                  initial={{ y: -32, opacity: 0, filter: "blur(4px)" }}
-                  animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                  transition={{ type: "spring", duration: 0.4, bounce: 0 }}
-                  className="flex h-full flex-col items-center justify-center"
-                >
-                  {successChild || <PopoverFormSuccess />}
-                </motion.div>
-              ) : (
-                <motion.div
-                  exit={{
-                    scale: 0.95,
-                    opacity: 0,
-                    filter: "blur(4px)",
-                    transition: { duration: 0.2, ease: "easeInOut" },
-                  }}
-                  transition={{ type: "spring", duration: 0.4, bounce: 0 }}
-                  key="open-child"
-                  style={{ borderRadius: 10 }}
-                  className="h-full bg-white shadow-lg z-20"
-                >
-                  {openChild}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <motion.div layoutId={`${title}-title`} className="z-10">
+              <p className="font-extrabold">{title.toUpperCase()}</p>
+            </motion.div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-black rounded-full scale-0 group-hover:scale-[1500%] transition-transform duration-500 origin-center"></div>
+              <PiArrowCircleRightFill className="w-6 h-6 relative z-10 text-white group-hover:text-white transition-colors duration-200" />
+            </div>
           </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+        </motion.label>
+      </div>
+
+      {/* Portal for modal overlay */}
+      {mounted && typeof window !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {open && (
+            <>
+              {/* Blur background overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/30 backdrop-blur-md z-[9999]"
+                onClick={() => setOpen(false)}
+                style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+              />
+              {/* Modal content */}
+              <motion.div
+                layoutId={`${title}-wrapper`}
+                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-muted shadow-[0_0_0_1px_rgba(0,0,0,0.08),0px_1px_2px_rgba(0,0,0,0.04)] outline-none z-[10000]"
+                ref={ref}
+                style={{ borderRadius: 10, width, height, position: 'fixed' }}
+              >
+                <motion.span
+                  aria-hidden
+                  className="absolute left-4 top-[17px] text-sm text-muted-foreground data-[success]:text-transparent"
+                  layoutId={`${title}-title`}
+                  data-success={showSuccess}
+                >
+                  {title}
+                </motion.span>
+                {showCloseButton && (
+                  <div className="absolute -top-[5px] left-1/2 transform -translate-x-1/2 w-[12px] h-[26px] flex items-center justify-center z-20">
+                    <button
+                      onClick={() => setOpen(false)}
+                      className="absolute z-10 -mt-1 flex items-center justify-center w-[10px] h-[6px] text-muted-foreground hover:text-foreground focus:outline-none rounded-full"
+                      aria-label="Close"
+                    >
+                      <ChevronUp className="text-muted-foreground/80" />
+                    </button>
+                    <PopoverFormCutOutTopIcon />
+                  </div>
+                )}
+                <AnimatePresence mode="popLayout">
+                  {showSuccess ? (
+                    <motion.div
+                      key="success"
+                      initial={{ y: -32, opacity: 0, filter: "blur(4px)" }}
+                      animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                      transition={{ type: "spring", duration: 0.4, bounce: 0 }}
+                      className="flex h-full flex-col items-center justify-center"
+                    >
+                      {successChild || <PopoverFormSuccess />}
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      exit={{
+                        scale: 0.95,
+                        opacity: 0,
+                        filter: "blur(4px)",
+                        transition: { duration: 0.2, ease: "easeInOut" },
+                      }}
+                      transition={{ type: "spring", duration: 0.4, bounce: 0 }}
+                      key="open-child"
+                      style={{ borderRadius: 10 }}
+                      className="h-full bg-white shadow-lg z-20"
+                    >
+                      {openChild}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </>
   )
 }
 

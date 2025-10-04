@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0", 
     "baseUrl": "src",
     "paths": {
       "@/*": ["./*"],
@@ -9,8 +10,8 @@
       "@/hooks/*": ["hooks/*"],
       "@/app/*": ["app/*"]
     },
-    "checkJs": true,                    
-    "allowJs": true,                       
+    "checkJs": true,
+    "allowJs": true,
     "noEmit": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -19,9 +20,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,                
-    
-
+    "skipLibCheck": true,
     "strict": false,
     "noImplicitAny": false,
     "strictFunctionTypes": false,
@@ -33,25 +32,25 @@
     "noImplicitThis": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    
-
     "noUncheckedIndexedAccess": false,
     "exactOptionalPropertyTypes": false,
     "useUnknownInCatchVariables": false
   },
   "typeAcquisition": {
-    "enable": true,                       
+    "enable": true,
     "include": [],
-    "exclude": ["@types/node"]            
+    "exclude": ["@types/node"]
   },
   "include": [
     "src/**/*",
     "*.js",
-    "*.jsx"
+    "*.jsx",
+    "*.ts",
+    "*.tsx"
   ],
   "exclude": [
-    "node_modules", 
-    ".next", 
+    "node_modules",
+    ".next",
     "dist"
   ]
 }
