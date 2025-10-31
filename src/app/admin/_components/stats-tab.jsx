@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, MapPin, DollarSign, ShoppingBasket } from "lucide-react"
+import { FaUsers, FaMapMarkerAlt, FaDollarSign, FaShoppingBasket } from "react-icons/fa"
 
 export default function StatsTab({ stats, loading }) {
   return (
@@ -10,7 +10,7 @@ export default function StatsTab({ stats, loading }) {
       <Card className="hover:shadow-lg transition-shadow">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
           <CardTitle className="text-lg font-medium">Total Users</CardTitle>
-          <Users className="h-8 w-8 text-blue-600" />
+          <FaUsers className="h-8 w-8 text-blue-600" />
         </CardHeader>
         <CardContent>
           <div className="text-4xl font-bold mb-2">{loading ? "..." : stats.totalUsers.toLocaleString()}</div>
@@ -22,7 +22,7 @@ export default function StatsTab({ stats, loading }) {
       <Card className="hover:shadow-lg transition-shadow">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
           <CardTitle className="text-lg font-medium">Total Lands</CardTitle>
-          <MapPin className="h-8 w-8 text-green-600" />
+          <FaMapMarkerAlt className="h-8 w-8 text-green-600" />
         </CardHeader>
         <CardContent>
           <div className="text-4xl font-bold mb-2">{loading ? "..." : stats.totalLands.toLocaleString()}</div>
@@ -34,7 +34,7 @@ export default function StatsTab({ stats, loading }) {
       <Card className="hover:shadow-lg transition-shadow">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
           <CardTitle className="text-lg font-medium">Total Transactions</CardTitle>
-          <DollarSign className="h-8 w-8 text-orange-600" />
+          <FaDollarSign className="h-8 w-8 text-orange-600" />
         </CardHeader>
         <CardContent>
           <div className="text-4xl font-bold mb-2">{loading ? "..." : stats.totalExpenses.toLocaleString()}</div>
@@ -46,7 +46,7 @@ export default function StatsTab({ stats, loading }) {
       <Card className="hover:shadow-lg transition-shadow">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
           <CardTitle className="text-lg font-medium">Marketplace Listings</CardTitle>
-          <ShoppingBasket className="h-8 w-8 text-purple-600" />
+          <FaShoppingBasket className="h-8 w-8 text-purple-600" />
         </CardHeader>
         <CardContent>
           <div className="text-4xl font-bold mb-2">{loading ? "..." : stats.totalMarketplaceListings.toLocaleString()}</div>

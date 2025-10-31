@@ -1,7 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { LogOut, Shield, Moon, Sun } from "lucide-react"
+import { FiLogOut } from "react-icons/fi"
+import { FaShieldAlt } from "react-icons/fa"
+import { IoMoon, IoSunny } from "react-icons/io5"
 import { motion } from "motion/react"
 import { useTheme } from "next-themes"
 import AdminLoginDialog from "./_components/admin-login-dialog"
@@ -95,7 +97,7 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
-          <Shield className="h-16 w-16 text-blue-600 mx-auto mb-4" />
+          <FaShieldAlt className="h-16 w-16 text-blue-600 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Admin Dashboard</h1>
           <p className="text-gray-600 dark:text-gray-400">Please login to access the admin panel</p>
         </div>
@@ -134,10 +136,10 @@ export default function AdminDashboard() {
           </div>
           <div className="flex items-center gap-3">
             <Button onClick={toggleTheme} variant="outline" size="icon">
-              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              {theme === "dark" ? <IoSunny className="h-4 w-4" /> : <IoMoon className="h-4 w-4" />}
             </Button>
             <Button onClick={handleLogout} variant="outline" className="flex items-center gap-2 bg-transparent">
-              <LogOut className="h-4 w-4" />
+              <FiLogOut className="h-4 w-4" />
               Logout
             </Button>
           </div>

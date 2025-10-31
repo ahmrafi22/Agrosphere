@@ -4,9 +4,9 @@ import React from "react"
 import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { createPortal } from "react-dom"
-import { ChevronUp, Loader, Eye, EyeOff } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { PiArrowCircleRightFill } from "react-icons/pi"
+import { FiChevronUp, FiLoader, FiEye, FiEyeOff } from "react-icons/fi"
 import { setAuthCookies } from "@/lib/auth"
 
 export function MorphingLoginButton() {
@@ -87,9 +87,9 @@ export function MorphingLoginButton() {
     <div className="h-full flex flex-col p-6 bg-white text-black">
       {/* Tab Navigation */}
       <div className="relative mb-6">
-        <div className="flex bg-gray-100 rounded-lg p-1 relative">
+        <div className="flex bg-gray-100 rounded-full p-1 relative">
           <motion.div
-            className="absolute top-1 bottom-1 bg-white rounded-md shadow-sm"
+            className="absolute top-1 bottom-1 bg-white rounded-full shadow-sm"
             initial={false}
             animate={{
               x: isLogin ? 0 : "calc(100% - 4px)",
@@ -103,7 +103,7 @@ export function MorphingLoginButton() {
               setIsLogin(true)
               setError("")
             }}
-            className={`relative z-10 flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors ${
+            className={`relative z-10 flex-1 py-2 px-4 text-sm font-medium rounded-full transition-colors ${
               isLogin ? "text-black" : "text-gray-500 hover:text-gray-700"
             }`}
           >
@@ -115,7 +115,7 @@ export function MorphingLoginButton() {
               setIsLogin(false)
               setError("")
             }}
-            className={`relative z-10 flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors ${
+            className={`relative z-10 flex-1 py-2 px-4 text-sm font-medium rounded-full transition-colors ${
               !isLogin ? "text-black" : "text-gray-500 hover:text-gray-700"
             }`}
           >
@@ -213,7 +213,7 @@ export function MorphingLoginButton() {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                   >
-                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                    {showPassword ? <FiEyeOff className="h-5 w-5" /> : <FiEye className="h-5 w-5" />}
                   </button>
                 </div>
               </div>
@@ -224,10 +224,10 @@ export function MorphingLoginButton() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex items-center justify-center py-3 px-4 bg-black text-white font-medium rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="w-full flex items-center justify-center py-3 px-4 bg-black text-white font-medium rounded-full hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 {loading ? (
-                  <Loader className="animate-spin h-5 w-5" />
+                  <FiLoader className="animate-spin h-5 w-5" />
                 ) : (
                   <span>{isLogin ? "Sign In" : "Create Account"}</span>
                 )}
@@ -258,8 +258,9 @@ export function MorphingLoginButton() {
         }
         width="420px"
         height="520px"
-        showCloseButton={true}
-        title={isLogin ? "Sign In" : "Sign Up"}
+        showCloseButton={false}
+        title="Sign In"
+        displayTitle={isLogin ? "Sign In" : "Sign Up"}
       />
     </div>
   )
@@ -274,6 +275,7 @@ function PopoverForm({
   width = "364px",
   height = "192px",
   title = "Feedback",
+  displayTitle,
   showCloseButton = false,
 }) {
   const ref = useRef(null)
@@ -284,6 +286,8 @@ function PopoverForm({
   }, [])
   
   useClickOutside(ref, () => setOpen(false))
+
+  const effectiveTitle = displayTitle || title
 
   return (
     <>
@@ -301,7 +305,7 @@ function PopoverForm({
             style={{ borderRadius: open ? 10 : 9999 }}
           >
             <motion.div layoutId={`${title}-title`} className="z-10">
-              <p className="font-extrabold">{title.toUpperCase()}</p>
+              <p className="font-extrabold">{effectiveTitle.toUpperCase()}</p>
             </motion.div>
             <div className="relative">
               <div className="absolute inset-0 bg-black rounded-full scale-0 group-hover:scale-[1500%] transition-transform duration-500 origin-center"></div>
@@ -338,7 +342,7 @@ function PopoverForm({
                   layoutId={`${title}-title`}
                   data-success={showSuccess}
                 >
-                  {title}
+                  {effectiveTitle}
                 </motion.span>
                 {showCloseButton && (
                   <div className="absolute -top-[5px] left-1/2 transform -translate-x-1/2 w-[12px] h-[26px] flex items-center justify-center z-20">
@@ -347,7 +351,7 @@ function PopoverForm({
                       className="absolute z-10 -mt-1 flex items-center justify-center w-[10px] h-[6px] text-muted-foreground hover:text-foreground focus:outline-none rounded-full"
                       aria-label="Close"
                     >
-                      <ChevronUp className="text-muted-foreground/80" />
+                      <FiChevronUp className="text-muted-foreground/80" />
                     </button>
                     <PopoverFormCutOutTopIcon />
                   </div>

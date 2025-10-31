@@ -1,11 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  Send,
-  Users,
-  User,
-} from "lucide-react";
+import { FaUser, FaUsers } from "react-icons/fa";
+import { IoSend } from "react-icons/io5";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function NotificationsTab() {
@@ -135,7 +132,7 @@ return (
             <div className="w-full bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
                 <div className="border-b border-gray-200 dark:border-gray-700 px-6 py-4">
                     <h3 className="text-lg font-semibold flex items-center justify-center gap-2">
-                        <Send className="h-4 w-4" />
+                        <IoSend className="h-4 w-4" />
                         Send Notification
                     </h3>
                 </div>
@@ -152,7 +149,7 @@ return (
                                         : "border-gray-200 dark:border-gray-700"
                                 }`}
                             >
-                                <User className="h-5 w-5 mx-auto mb-1.5 text-blue-600" />
+                                <FaUser className="h-5 w-5 mx-auto mb-1.5 text-blue-600" />
                                 <div className="font-medium text-sm">Individual User</div>
                                 <div className="text-xs text-gray-600 dark:text-gray-400">
                                     Send to specific user
@@ -166,7 +163,7 @@ return (
                                         : "border-gray-200 dark:border-gray-700"
                                 }`}
                             >
-                                <Users className="h-5 w-5 mx-auto mb-1.5 text-green-600" />
+                                <FaUsers className="h-5 w-5 mx-auto mb-1.5 text-green-600" />
                                 <div className="font-medium text-sm">Broadcast</div>
                                 <div className="text-xs text-gray-600 dark:text-gray-400">
                                     Send to all users
@@ -224,7 +221,7 @@ return (
                                 </>
                             ) : (
                                 <>
-                                    <Send className="h-3 w-3 mr-2 inline-block" />
+                                    <IoSend className="h-3 w-3 mr-2 inline-block" />
                                     Send{" "}
                                     {notificationForm.type === "broadcast"
                                         ? "to All Users"

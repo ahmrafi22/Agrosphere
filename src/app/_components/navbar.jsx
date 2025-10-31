@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import { motion } from "framer-motion"
+import { GiHolosphere } from "react-icons/gi"
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -97,6 +98,14 @@ export function Navbar() {
         />
 
         <div className="relative flex items-center justify-center gap-1">
+          {/* Icon */}
+          <div className="relative z-10 px-2 md:px-3 flex items-center">
+            <GiHolosphere className="w-5 h-5 md:w-10 md:h-10 text-green-400 drop-shadow-[0_5px_5px_rgba(34,197,94,0.5)]" />
+          </div>
+
+          {/* Vertical Separator */}
+          <div className="relative z-10 w-[1px] h-6 bg-green-400/30 mx-1" />
+
           {activeIndex !== -1 && bgPosition.width > 0 && (
             <motion.div
               layoutId="active-bg"

@@ -5,7 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { MoreHorizontal, AlertTriangle, CheckCircle, XCircle, Clock } from "lucide-react"
+import { HiDotsHorizontal } from "react-icons/hi"
+import { MdWarning, MdCheckCircle, MdCancel } from "react-icons/md"
+import { AiOutlineClockCircle } from "react-icons/ai"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export default function ReportsTab() {
@@ -59,13 +61,13 @@ export default function ReportsTab() {
   const getStatusIcon = (status) => {
     switch (status) {
       case "pending":
-        return <Clock className="h-4 w-4" />
+        return <AiOutlineClockCircle className="h-4 w-4" />
       case "resolved":
-        return <CheckCircle className="h-4 w-4" />
+        return <MdCheckCircle className="h-4 w-4" />
       case "dismissed":
-        return <XCircle className="h-4 w-4" />
+        return <MdCancel className="h-4 w-4" />
       default:
-        return <AlertTriangle className="h-4 w-4" />
+        return <MdWarning className="h-4 w-4" />
     }
   }
 
@@ -107,7 +109,7 @@ export default function ReportsTab() {
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-orange-500" />
+                  <MdWarning className="h-5 w-5 text-orange-500" />
                   {report.report_reason}
                 </CardTitle>
                 <div className="flex items-center gap-3">
@@ -118,7 +120,7 @@ export default function ReportsTab() {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" className="h-8 w-8 p-0">
-                        <MoreHorizontal className="h-4 w-4" />
+                        <HiDotsHorizontal className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
@@ -126,21 +128,21 @@ export default function ReportsTab() {
                         onClick={() => handleStatusUpdate(report.id, "resolved")}
                         className="text-green-600"
                       >
-                        <CheckCircle className="mr-2 h-4 w-4" />
+                        <MdCheckCircle className="mr-2 h-4 w-4" />
                         Mark Resolved
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => handleStatusUpdate(report.id, "dismissed")}
                         className="text-gray-600"
                       >
-                        <XCircle className="mr-2 h-4 w-4" />
+                        <MdCancel className="mr-2 h-4 w-4" />
                         Dismiss
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => handleStatusUpdate(report.id, "pending")}
                         className="text-orange-600"
                       >
-                        <Clock className="mr-2 h-4 w-4" />
+                        <AiOutlineClockCircle className="mr-2 h-4 w-4" />
                         Mark Pending
                       </DropdownMenuItem>
                     </DropdownMenuContent>
@@ -175,7 +177,7 @@ export default function ReportsTab() {
         {reports.length === 0 && (
           <Card>
             <CardContent className="text-center py-8">
-              <AlertTriangle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <MdWarning className="h-12 w-12 text-gray-400 mx-auto mb-4" />
               <p className="text-gray-500">No reports found</p>
             </CardContent>
           </Card>

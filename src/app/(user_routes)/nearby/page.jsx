@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
-import { MapPin, Users, UserPlus, Phone, ChevronDown, User } from "lucide-react"
+import { FaMapMarkerAlt, FaUsers, FaUserPlus, FaPhone, FaUser } from "react-icons/fa"
+import { IoChevronDown } from "react-icons/io5"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useToast } from "@/components/ui/use-toast"
 import { getUserFromStorage } from "@/lib/auth"
@@ -40,7 +41,7 @@ const FarmerCard = ({ farmer, sendRequest, navigateToProfile }) => {
               <div 
                 className="h-14 w-14 rounded-full flex items-center justify-center"
               >
-                <User className="h-7 w-7 dark:text-white" />
+                <FaUser className="h-7 w-7 dark:text-white" />
               </div>
             )}
           </div>
@@ -49,12 +50,12 @@ const FarmerCard = ({ farmer, sendRequest, navigateToProfile }) => {
               {farmer.name || 'Unknown User'}
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1.5 mt-1">
-              <MapPin className="h-4 w-4" />
+              <FaMapMarkerAlt className="h-4 w-4" />
               {farmer.area && farmer.city ? `${farmer.area}, ${farmer.city}` : farmer.area || farmer.city || 'N/A'}
             </p>
             {farmer.phone && (
               <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1.5 mt-1">
-                <Phone className="h-4 w-4" />
+                <FaPhone className="h-4 w-4" />
                 {farmer.phone}
               </p>
             )}
@@ -78,7 +79,7 @@ const FarmerCard = ({ farmer, sendRequest, navigateToProfile }) => {
             onClick={() => sendRequest(farmer.id)}
             className="cursor-pointer flex items-center justify-center gap-2 bg-green-600 text-white font-semibold py-2 px-4 rounded-full hover:bg-green-700 transition-colors"
           >
-            <UserPlus className="h-4 w-4" />
+            <FaUserPlus className="h-4 w-4" />
             Connect
           </button>
         ) : (
@@ -286,13 +287,13 @@ export default function NearbyPage() {
                   <option value="city">City</option>
                   <option value="name">Name</option>
                 </select>
-                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                <IoChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
               </div>
               <div className="relative flex-1">
                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                  {searchType === 'name' ? <User className="h-4 w-4" /> : 
-                   searchType === 'city' ? <MapPin className="h-4 w-4" /> :
-                   <MapPin className="h-4 w-4" />}
+                  {searchType === 'name' ? <FaUser className="h-4 w-4" /> : 
+                   searchType === 'city' ? <FaMapMarkerAlt className="h-4 w-4" /> :
+                   <FaMapMarkerAlt className="h-4 w-4" />}
                 </span>
                 <input
                   type="text"
@@ -333,7 +334,7 @@ export default function NearbyPage() {
           </div>
         ) : (
           <div className="text-center p-12 rounded-lg shadow-sm border border-gray-200">
-            <Users className="h-16 w-16 mx-auto text-gray-300 mb-4" />
+            <FaUsers className="h-16 w-16 mx-auto text-gray-300 mb-4" />
             <h3 className="text-xl font-semibold text-gray-700">No Farmers Found</h3>
             <p className="text-gray-500 mt-1">
               {searchValue.trim() ? 'Try adjusting your search criteria.' : 'Try searching to find farmers in other areas.'}

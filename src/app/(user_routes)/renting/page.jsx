@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Search, Package, FileText } from 'lucide-react';
+import { FaPlus, FaSearch, FaBox, FaFileAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import EquipmentCard from './components/EquipmentCard';
@@ -224,9 +224,9 @@ export default function RentingPage() {
   const availableEquipment = equipment.filter(eq => eq.owner_id !== user?.id && eq.status === 'available');
 
   const tabs = [
-    { id: 'browse', label: 'Browse Equipment', icon: Search },
-    { id: 'my-rentals', label: 'My Equipment', icon: Package },
-    { id: 'my-requests', label: 'My Requests', icon: FileText },
+    { id: 'browse', label: 'Browse Equipment', icon: FaSearch },
+    { id: 'my-rentals', label: 'My Equipment', icon: FaBox },
+    { id: 'my-requests', label: 'My Requests', icon: FaFileAlt },
   ];
 
   return (
@@ -239,7 +239,7 @@ export default function RentingPage() {
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
             <DialogTrigger asChild>
               <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">
-                <Plus className="w-4 h-4" />
+                <FaPlus className="w-4 h-4" />
                 Add Equipment for Rent
               </button>
             </DialogTrigger>

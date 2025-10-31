@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Loader2, Shield } from "lucide-react"
+import { AiOutlineLoading3Quarters } from "react-icons/ai"
+import { FaShieldAlt } from "react-icons/fa"
 
 export default function AdminLoginDialog({ open, onOpenChange, onLoginSuccess }) {
   const [formData, setFormData] = useState({
@@ -58,7 +59,7 @@ export default function AdminLoginDialog({ open, onOpenChange, onLoginSuccess })
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Shield className="h-5 w-5 text-blue-600" />
+            <FaShieldAlt className="h-5 w-5 text-blue-600" />
             Admin Login
           </DialogTitle>
         </DialogHeader>
@@ -101,7 +102,7 @@ export default function AdminLoginDialog({ open, onOpenChange, onLoginSuccess })
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <AiOutlineLoading3Quarters className="mr-2 h-4 w-4 animate-spin" />
                 Logging in...
               </>
             ) : (

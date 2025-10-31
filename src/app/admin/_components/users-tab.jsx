@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { MoreHorizontal, UserCheck, UserX, Mail, Phone, Search } from "lucide-react"
+import { HiDotsHorizontal } from "react-icons/hi"
+import { FaUserCheck, FaUserTimes, FaEnvelope, FaPhone, FaSearch } from "react-icons/fa"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export default function UsersTab() {
@@ -98,7 +99,7 @@ export default function UsersTab() {
 
       {/* Search Input */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
         <Input
           placeholder="Search users by email..."
           value={searchEmail}
@@ -120,12 +121,12 @@ export default function UsersTab() {
                     <h4 className="font-semibold text-lg">{user.name}</h4>
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
-                        <Mail className="h-4 w-4" />
+                        <FaEnvelope className="h-4 w-4" />
                         {user.email}
                       </div>
                       {user.phone && (
                         <div className="flex items-center gap-1">
-                          <Phone className="h-4 w-4" />
+                          <FaPhone className="h-4 w-4" />
                           {user.phone}
                         </div>
                       )}
@@ -144,7 +145,7 @@ export default function UsersTab() {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" className="h-8 w-8 p-0">
-                        <MoreHorizontal className="h-4 w-4" />
+                        <HiDotsHorizontal className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
@@ -154,12 +155,12 @@ export default function UsersTab() {
                       >
                         {user.is_banned ? (
                           <>
-                            <UserCheck className="mr-2 h-4 w-4" />
+                            <FaUserCheck className="mr-2 h-4 w-4" />
                             Unban User
                           </>
                         ) : (
                           <>
-                            <UserX className="mr-2 h-4 w-4" />
+                            <FaUserTimes className="mr-2 h-4 w-4" />
                             Ban User
                           </>
                         )}
@@ -175,7 +176,7 @@ export default function UsersTab() {
         {filteredUsers.length === 0 && searchEmail.trim() !== "" && (
           <Card>
             <CardContent className="text-center py-8">
-              <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <FaSearch className="h-12 w-12 text-gray-400 mx-auto mb-4" />
               <p className="text-gray-500">No users found with email containing "{searchEmail}"</p>
             </CardContent>
           </Card>
