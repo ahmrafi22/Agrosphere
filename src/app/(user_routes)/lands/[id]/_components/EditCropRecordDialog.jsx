@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from "motion/react"
 import { FiX, FiCalendar, FiDollarSign, FiEdit3 } from "react-icons/fi"
 import { DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
