@@ -26,7 +26,7 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
             <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 md:px-8">
                 <div className="text-center w-full max-w-[95%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-[75%] xl:max-w-[70%] mx-auto mt-0 md:mt-4">
                     <div className="relative inline-block mb-8 md:mb-12 w-full">
-                        <div className="relative space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-3 w-full">
+                        <div className="relative space-y-1 md:space-y-3 w-full">
                             {/* Mobile Only: First Line - Icon + Agrosphere */}
                             <div className="w-full overflow-hidden md:hidden -translate-x-1.5">
                                 <motion.h1
@@ -34,7 +34,7 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
                                     animate={{ y: 0 }}
                                     transition={{ delay: 0.8, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                     className="whitespace-nowrap text-stone-800 leading-tight flex items-center justify-center gap-2"
-                                    style={{ fontSize: "clamp(2rem, 8.5vw, 3rem)" }}
+                                    style={{ fontSize: "clamp(1.5rem, 7vw, 2.5rem)" }}
                                 >
                                     <motion.span
                                         initial={{ y: "100%", opacity: 0 }}
@@ -46,7 +46,7 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
                                         }}
                                         className="inline-block"
                                     >
-                                        <GiHolosphere className="drop-shadow-[0_5px_5px_rgba(34,197,94,0.5)] text-green-400" style={{ width: "clamp(2.5rem, 7.5vw, 3.5rem)", height: "clamp(2.5rem, 7.5vw, 3.5rem)" }} />
+                                        <GiHolosphere className="drop-shadow-[0_5px_5px_rgba(34,197,94,0.5)] text-green-400" style={{ width: "clamp(2rem, 6vw, 3rem)", height: "clamp(2rem, 6vw, 3rem)" }} />
                                     </motion.span>
 
                                     {["Agrosphere"].map((word, wordIndex) => (
@@ -84,7 +84,7 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
                                     className="whitespace-nowrap text-stone-800 leading-tight"
                                     style={{ 
                                         fontFamily: "'Poppins', sans-serif",
-                                        fontSize: "clamp(1.75rem, 7vw, 2.5rem)"
+                                        fontSize: "clamp(1.25rem, 5.5vw, 2rem)"
                                     }}
                                 >
                                     {["Smart", " ", "Farming"].map((word, wordIndex) => (
@@ -110,13 +110,13 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
                             </div>
 
                             {/* Tablet/Desktop Only: First Line - Icon + Agrosphere */}
-                            <div className="hidden md:block">
+                            <div className="overflow-hidden hidden md:block">
                                 <motion.h1
                                     initial={{ y: "100%" }}
                                     animate={{ y: 0 }}
                                     transition={{ delay: 0.8, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                     className="whitespace-nowrap text-stone-800 leading-tight flex items-center justify-center gap-2"
-                                    style={{ fontSize: "clamp(3.5rem, 4.5vw, 3rem)" }}
+                                    style={{ fontSize: "clamp(1.5rem, 3.5vw, 4rem)" }}
                                 >
                                     <motion.span
                                         initial={{ y: "100%", opacity: 0 }}
@@ -128,7 +128,7 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
                                         }}
                                         className="inline-block"
                                     >
-                                        <GiHolosphere className="text-green-400 drop-shadow-[0_5px_5px_rgba(34,197,94,0.5)]" style={{ width: "clamp(4rem, 4.5vw, 5rem)", height: "clamp(4rem, 3.5vw, 5rem)" }} />
+                                        <GiHolosphere className="text-green-400 drop-shadow-[0_5px_5px_rgba(34,197,94,0.5)]" style={{ width: "clamp(2rem, 3.5vw, 5rem)", height: "clamp(2rem, 3.5vw, 5rem)" }} />
                                     </motion.span>
 
                                     {["Agrosphere", " ", "Smart", " ", "Farming"].map((word, wordIndex) => (
@@ -166,7 +166,7 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
                                     className="whitespace-nowrap text-stone-800 leading-tight"
                                     style={{ 
                                         fontFamily: "'Poppins', sans-serif",
-                                        fontSize: "clamp(1.75rem, 6vw, 4rem)"
+                                        fontSize: "clamp(1.25rem, 3.5vw, 4rem)"
                                     }}
                                 >
                                     {["Companion", " ", "for"].map((word, wordIndex) => (
@@ -192,9 +192,9 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
                             </div>
 
                             {/* Images + Modern Farmers */}
-                            <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-4">
+                            <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
                                 {/* Farmer Images */}
-                                <div className="relative flex items-center shrink-0" style={{ height: "clamp(4rem, 7vw, 7rem)" }}>
+                                <div className="relative flex items-center shrink-0" style={{ height: "clamp(3.5rem, 5.5vw, 7rem)" }}>
                                     {/* Left Image  */}
                                     <motion.div
                                         initial={{ x: 100, opacity: 0, rotate: 0 }}
@@ -213,8 +213,8 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
                                                 priority
                                                 className="rounded-2xl object-cover object-[10%_10%]"
                                                 style={{ 
-                                                    width: "clamp(4rem, 7vw, 6rem)", 
-                                                    height: "clamp(4rem, 7vw, 6rem)" 
+                                                    width: "clamp(3.5rem, 5.5vw, 6rem)", 
+                                                    height: "clamp(3.5rem, 5.5vw, 6rem)" 
                                                 }}
                                             />
                                         </motion.div>
@@ -238,8 +238,8 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
                                                 priority
                                                 className="rounded-2xl object-cover object-[10%_10%]"
                                                 style={{ 
-                                                    width: "clamp(4rem, 7vw, 6rem)", 
-                                                    height: "clamp(4rem, 7vw, 6rem)" 
+                                                    width: "clamp(3.5rem, 5.5vw, 6rem)", 
+                                                    height: "clamp(3.5rem, 5.5vw, 6rem)" 
                                                 }}
                                             />
                                         </motion.div>
@@ -263,8 +263,8 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
                                                 priority
                                                 className="rounded-2xl object-cover object-[10%_10%]"
                                                 style={{ 
-                                                    width: "clamp(4rem, 7vw, 6rem)", 
-                                                    height: "clamp(4rem, 7vw, 6rem)" 
+                                                    width: "clamp(3.5rem, 5.5vw, 6rem)", 
+                                                    height: "clamp(3.5rem, 5.5vw, 6rem)" 
                                                 }}
                                             />
                                         </motion.div>
@@ -280,7 +280,7 @@ export function HeroSection({ loginFormOpen, setLoginFormOpen }) {
                                         className="whitespace-nowrap text-stone-800 leading-tight"
                                         style={{ 
                                             fontFamily: "'Poppins', sans-serif",
-                                            fontSize: "clamp(1.75rem, 6vw, 4rem)"
+                                            fontSize: "clamp(1.25rem, 3.5vw, 4rem)"
                                         }}
                                     >
                                         {["MODERN", " ", "Farmers"].map((word, wordIndex) => (
