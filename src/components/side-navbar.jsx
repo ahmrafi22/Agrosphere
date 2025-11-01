@@ -192,7 +192,7 @@ export default function SideNavbar({ isOpen, onClose }) {
 
   const DesktopSidebarContent = () => (
     <div className="flex flex-col h-full">
-      <div className="flex-1 py-6">
+      <div className="flex-1 py-6 overflow-y-auto overflow-x-hidden">
         <nav className="space-y-1 px-2 relative">
           {/* Animated Background */}
           <AnimatePresence>
@@ -205,7 +205,8 @@ export default function SideNavbar({ isOpen, onClose }) {
                   top: `${getBackgroundPosition(activeIndex)}px`,
                   height: "44px",
                   left: "8px",
-                  right: "8px",
+                  right: isHovered ? "8px" : "8px",
+                  width: isHovered ? "auto" : "60px",
                 }}
                 transition={{
                   type: "spring",
@@ -229,14 +230,14 @@ export default function SideNavbar({ isOpen, onClose }) {
                 href={href}
                 onClick={() => handleLinkClick(item.href)}
                 className={cn(
-                  "flex items-center rounded-lg py-3 px-3 text-sm font-medium transition-all duration-200 relative z-10",
-                  isHovered ? "justify-start" : "justify-center",
+                  "flex items-center rounded-lg py-3 text-sm font-medium transition-colors duration-200 relative z-10",
+                  "justify-start pl-[18px]",
                   isActive
                     ? "text-primary-foreground"
-                    : "text-muted-foreground  hover:text-accent-foreground",
+                    : "text-muted-foreground hover:text-accent-foreground",
                 )}
               >
-                <div className="relative flex-shrink-0">
+                <div className="relative shrink-0">
                   <item.icon 
 // @ts-ignore
                   className="h-5 w-5" />
@@ -246,7 +247,26 @@ export default function SideNavbar({ isOpen, onClose }) {
                   )}
                 </div>
 
-                {isHovered && <span className="whitespace-nowrap overflow-hidden ml-3">{item.title}</span>}
+                <motion.span 
+                  className="whitespace-nowrap overflow-hidden ml-3 block"
+                  initial={false}
+                  animate={{ 
+                    opacity: isHovered ? 1 : 0,
+                    width: isHovered ? "auto" : 0,
+                    marginLeft: isHovered ? 12 : 0,
+                  }}
+                  transition={{ 
+                    duration: 0.3,
+                    ease: [0.4, 0, 0.2, 1], 
+                    opacity: { 
+                      duration: 0.4, 
+                      ease: "easeInOut",
+                      delay: isHovered ? 0.1 : 0 
+                    }
+                  }}
+                >
+                  {item.title}
+                </motion.span>
 
                 {/* Tooltip for collapsed state */}
                 <AnimatePresence>
@@ -309,10 +329,10 @@ export default function SideNavbar({ isOpen, onClose }) {
             {activeIndex !== -1 && (
               <motion.div
                 layoutId="mobile-active-bg"
-                className="absolute bg-primary rounded-lg z-0"
+                className="absolute bg-primary rounded-full z-0"
                 initial={false}
                 animate={{
-                  top: `${getBackgroundPosition(activeIndex)}px`,
+                  top: `${getBackgroundPosition(activeIndex) - 2}px`,
                   height: "44px",
                   left: "12px",
                   right: "12px",
@@ -348,7 +368,7 @@ export default function SideNavbar({ isOpen, onClose }) {
                       : "text-muted-foreground hover:bg-accent/50 hover:text-accent-foreground",
                   )}
                 >
-                  <div className="relative flex-shrink-0">
+                  <div className="relative shrink-0">
                     <item.icon 
 // @ts-ignore
                     className="h-5 w-5" />
@@ -388,10 +408,10 @@ export default function SideNavbar({ isOpen, onClose }) {
           >
             {theme === "dark" ? (
               // @ts-ignore
-              <FiSun className="h-5 w-5 flex-shrink-0" />
+              <FiSun className="h-5 w-5 shrink-0" />
             ) : (
               // @ts-ignore
-              <FiMoon className="h-5 w-5 flex-shrink-0" />
+              <FiMoon className="h-5 w-5 shrink-0" />
             )}
             <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
           </Button>
@@ -406,7 +426,7 @@ export default function SideNavbar({ isOpen, onClose }) {
           >
             <FiLogOut 
 // @ts-ignore
-            className="h-5 w-5 flex-shrink-0" />
+            className="h-5 w-5 shrink-0" />
             <span>Logout</span>
           </Button>
         </div>
@@ -418,7 +438,7 @@ export default function SideNavbar({ isOpen, onClose }) {
     <>
       {/* Desktop Sidebar - Retractable Overlay */}
       <motion.aside
-        className="hidden md:flex flex-col border-r bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 fixed left-0 top-16 h-[calc(100vh-4rem)] z-40 shadow-sm"
+        className="hidden md:flex flex-col border-r bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 fixed left-0 top-16 h-[calc(100vh-4rem)] z-40 shadow-sm"
         initial={{ width: 80 }}
         animate={{ width: isHovered ? 240 : 80 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
