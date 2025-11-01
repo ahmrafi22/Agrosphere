@@ -5,38 +5,17 @@ import { motion } from "motion/react"
 import { useEffect, useState } from "react"
 import { FiCloud, FiCloudRain, FiDroplet, FiEye, FiRefreshCw, FiSun, FiWind } from "react-icons/fi"
 
-// Map weatherbit.io icon codes to React icons
+// Map OpenWeatherMap icon codes to React icons
 const weatherIcons = {
-  "t01d": FiCloudRain, "t01n": FiCloudRain, // Thunderstorm with light rain
-  "t02d": FiCloudRain, "t02n": FiCloudRain, // Thunderstorm with rain
-  "t03d": FiCloudRain, "t03n": FiCloudRain, // Thunderstorm with heavy rain
-  "t04d": FiCloudRain, "t04n": FiCloudRain, // Thunderstorm with light drizzle
-  "t05d": FiCloudRain, "t05n": FiCloudRain, // Thunderstorm with drizzle
-  "d01d": FiCloudRain, "d01n": FiCloudRain, // Light drizzle
-  "d02d": FiCloudRain, "d02n": FiCloudRain, // Drizzle
-  "d03d": FiCloudRain, "d03n": FiCloudRain, // Heavy drizzle
-  "r01d": FiCloudRain, "r01n": FiCloudRain, // Light rain
-  "r02d": FiCloudRain, "r02n": FiCloudRain, // Moderate rain
-  "r03d": FiCloudRain, "r03n": FiCloudRain, // Heavy rain
-  "r04d": FiCloudRain, "r04n": FiCloudRain, // Freezing rain
-  "r05d": FiCloudRain, "r05n": FiCloudRain, // Light shower rain
-  "r06d": FiCloudRain, "r06n": FiCloudRain, // Shower rain
-  "s01d": FiCloud, "s01n": FiCloud, // Light snow
-  "s02d": FiCloud, "s02n": FiCloud, // Snow
-  "s03d": FiCloud, "s03n": FiCloud, // Heavy snow
-  "s04d": FiCloud, "s04n": FiCloud, // Mix snow/rain
-  "s05d": FiCloud, "s05n": FiCloud, // Sleet
-  "s06d": FiCloud, "s06n": FiCloud, // Freezing drizzle
-  "a01d": FiCloud, "a01n": FiCloud, // Mist
-  "a02d": FiCloud, "a02n": FiCloud, // Smoke
-  "a03d": FiCloud, "a03n": FiCloud, // Haze
-  "a04d": FiWind, "a04n": FiWind, // Sand/dust
-  "a05d": FiCloud, "a05n": FiCloud, // Fog
-  "a06d": FiCloud, "a06n": FiCloud, // Freezing fog
-  "c01d": FiSun, "c01n": FiSun, // Clear sky
-  "c02d": FiCloud, "c02n": FiCloud, // Few clouds
-  "c03d": FiCloud, "c03n": FiCloud, // Scattered clouds
-  "c04d": FiCloud, "c04n": FiCloud, // Broken clouds
+  "01d": FiSun, "01n": FiSun, // Clear sky
+  "02d": FiCloud, "02n": FiCloud, // Few clouds
+  "03d": FiCloud, "03n": FiCloud, // Scattered clouds
+  "04d": FiCloud, "04n": FiCloud, // Broken clouds
+  "09d": FiCloudRain, "09n": FiCloudRain, // Shower rain
+  "10d": FiCloudRain, "10n": FiCloudRain, // Rain
+  "11d": FiCloudRain, "11n": FiCloudRain, // Thunderstorm
+  "13d": FiCloud, "13n": FiCloud, // Snow
+  "50d": FiWind, "50n": FiWind, // Mist/Fog
 }
 
 const getWeatherIcon = (iconCode) => {
@@ -217,7 +196,12 @@ export default function WeatherPage() {
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
               {weatherData.current.temperature}°C
             </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300">{weatherData.current.condition}</p>
+            {weatherData.current.feelsLike && (
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                Feels like {weatherData.current.feelsLike}°C
+              </p>
+            )}
+            <p className="text-lg text-gray-700 dark:text-gray-300 capitalize">{weatherData.current.condition}</p>
             <p className="text-gray-600 dark:text-gray-400">{weatherData.current.location}</p>
           </div>
           <div className="text-6xl text-blue-600 dark:text-blue-400">
@@ -270,7 +254,7 @@ export default function WeatherPage() {
             >
               <h4 className="font-semibold text-gray-900 dark:text-white mb-4">{day.day}</h4>
               
-              <div className="text-4xl text-blue-600 dark:text-blue-400 mb-4">
+              <div className="flex justify-center items-center text-4xl text-blue-600 dark:text-blue-400 mb-4">
                 {(() => {
                   const IconComponent = getWeatherIcon(day.icon)
                   return <IconComponent />
@@ -282,7 +266,7 @@ export default function WeatherPage() {
                   <span className="text-lg font-semibold text-gray-900 dark:text-white">{day.high}°</span>
                   <span className="text-gray-600 dark:text-gray-400 ml-2">{day.low}°</span>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{day.condition}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 capitalize">{day.condition}</p>
                 <div className="flex items-center justify-center gap-1 text-xs text-blue-600 dark:text-blue-400">
                   <FiDroplet className="h-3 w-3" />
                   <span>{day.precipitation}%</span>
@@ -295,20 +279,22 @@ export default function WeatherPage() {
 
       {/* Farming Recommendations */}
       <div>
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Farming Tips</h3>
-        <div className="space-y-4">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          Farming Tips & Recommendations
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {weatherData.farmingTips.map((tip, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className={`rounded-xl p-6 border ${getRecommendationColor(tip.type)}`}
+              className={`rounded-xl p-6 border ${getRecommendationColor(tip.type)} hover:shadow-lg transition-all`}
             >
-              <h4 className={`font-semibold mb-2 ${getRecommendationTextColor(tip.type)}`}>
+              <h4 className={`font-semibold mb-3 text-lg ${getRecommendationTextColor(tip.type)}`}>
                 {tip.title}
               </h4>
-              <p className={`${getRecommendationTextColor(tip.type)} opacity-90`}>
+              <p className={`${getRecommendationTextColor(tip.type)} opacity-90 leading-relaxed`}>
                 {tip.description}
               </p>
             </motion.div>
