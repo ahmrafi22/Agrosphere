@@ -9,8 +9,8 @@ import { PiArrowCircleRightFill } from "react-icons/pi"
 import { FiChevronUp, FiLoader, FiEye, FiEyeOff } from "react-icons/fi"
 import { setAuthCookies } from "@/lib/auth"
 
-export function MorphingLoginButton() {
-  const [open, setOpen] = useState(false)
+export function MorphingLoginButton({ externalOpen, onExternalOpenChange }) {
+  const [internalOpen, setInternalOpen] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [isLogin, setIsLogin] = useState(true)
   const [loading, setLoading] = useState(false)
@@ -19,6 +19,15 @@ export function MorphingLoginButton() {
   const [registerData, setRegisterData] = useState({ name: "", email: "", password: "" })
   const [error, setError] = useState("")
   const router = useRouter()
+
+  const open = externalOpen !== undefined ? externalOpen : internalOpen
+  const setOpen = (value) => {
+    if (onExternalOpenChange) {
+      onExternalOpenChange(value)
+    } else {
+      setInternalOpen(value)
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -309,7 +318,7 @@ function PopoverForm({
             </motion.div>
             <div className="relative">
               <div className="absolute inset-0 bg-black rounded-full scale-0 group-hover:scale-[1500%] transition-transform duration-500 origin-center"></div>
-              <PiArrowCircleRightFill className="w-6 h-6 relative z-10 text-white group-hover:text-white transition-colors duration-200" />
+              <PiArrowCircleRightFill className="w-6 h-6 relative z-10 text-white group-hover:text-white group-hover:-rotate-45 group-hover:scale-130 transition-all duration-200" />
             </div>
           </motion.div>
         </motion.label>

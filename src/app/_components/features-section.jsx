@@ -109,7 +109,7 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
             whileHover={{ y: -5, transition: { duration: 0.3, ease: "easeOut" } }}
-            className="lg:col-span-2 lg:row-span-2 bg-gradient-to-br from-green-50 to-green-100 rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+            className="lg:col-span-2 lg:row-span-2 bg-linear-to-br from-green-50 to-green-100 rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
           >
             <div className="absolute -right-12 -top-12 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
               <MdLandscape className="w-48 h-48 text-green-500" />
@@ -133,7 +133,7 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
             whileHover={{ y: -5, transition: { duration: 0.3, ease: "easeOut" } }}
-            className="lg:col-span-2 bg-gradient-to-br from-amber-50 to-amber-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+            className="lg:col-span-2 bg-linear-to-br from-amber-50 to-amber-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
           >
             <div className="absolute -right-8 -bottom-8 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
               <GiWheat className="w-32 h-32 text-amber-500" />
@@ -152,7 +152,7 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
             whileHover={{ y: -5, transition: { duration: 0.3, ease: "easeOut" } }}
-            className="bg-gradient-to-br from-sky-50 to-sky-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+            className="bg-linear-to-br from-sky-50 to-sky-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
           >
             <div className="absolute -right-6 -bottom-6 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
               <IoMdPeople className="w-24 h-24 text-sky-500" />
@@ -171,7 +171,7 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
             whileHover={{ y: -5, transition: { duration: 0.3, ease: "easeOut" } }}
-            className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+            className="bg-linear-to-br from-orange-50 to-orange-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
           >
             <div className="absolute -right-4 -top-4 opacity-20 group-hover:opacity-30 transition-opacity duration-300">
               <WiDaySunny className="w-24 h-24 text-orange-400" />
@@ -190,9 +190,9 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.5 }}
             whileHover={{ y: -5, transition: { duration: 0.3, ease: "easeOut" } }}
-            className="lg:col-span-2 bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+            className="lg:col-span-2 bg-linear-to-brr from-blue-50 to-blue-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
           >
-            <div className="absolute -left-8 -bottom-8 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+            <div className="absolute -right-8 -bottom-8 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
               <GiMoneyStack className="w-32 h-32 text-blue-500" />
             </div>
             <div className="relative z-10">
@@ -209,9 +209,9 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.6 }}
             whileHover={{ y: -5, transition: { duration: 0.3, ease: "easeOut" } }}
-            className="lg:col-span-2 lg:row-span-2 bg-gradient-to-br from-green-50 via-green-100 to-emerald-100 rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+            className="lg:col-span-2 lg:row-span-2 bg-linear-to-br from-green-50 via-green-100 to-emerald-100 rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
           >
-            <div className="absolute -left-12 -bottom-12 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+            <div className="absolute -right-12 -bottom-12 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
               <FaRobot className="w-48 h-48 text-green-600" />
             </div>
             <div className="relative z-10">
@@ -233,7 +233,7 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.7 }}
             whileHover={{ y: -5, transition: { duration: 0.3, ease: "easeOut" } }}
-            className="lg:col-span-1 bg-gradient-to-br from-amber-50 to-amber-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+            className="lg:col-span-1 bg-linear-to-br from-amber-50 to-amber-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
           >
             <div className="absolute -right-6 -top-6 opacity-20 group-hover:opacity-30 transition-opacity duration-300">
               <GiFarmTractor className="w-24 h-24 text-amber-600" />
@@ -252,7 +252,7 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.8 }}
             whileHover={{ y: -5, transition: { duration: 0.3, ease: "easeOut" } }}
-            className="lg:col-span-1 bg-gradient-to-br from-stone-50 to-stone-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+            className="lg:col-span-1 bg-linear-to-br from-stone-50 to-stone-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
           >
             <div className="absolute -right-6 -bottom-6 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
               <HiBell className="w-24 h-24 text-stone-600" />

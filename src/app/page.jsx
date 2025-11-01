@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Navbar } from "./_components/navbar"
 import { HeroSection } from "./_components/hero-section"
 import { FeaturesSection } from "./_components/features-section"
@@ -7,14 +8,19 @@ import { Footer } from "./_components/footer"
 import { Loop } from "./_components/loop"
 
 export default function Home() {
+  const [loginFormOpen, setLoginFormOpen] = useState(false)
+
   return (
       <div className="relative w-full min-h-screen">
-        <Navbar />
+        <Navbar onJoinClick={() => setLoginFormOpen(true)} />
 
         <div className="relative z-10">
         {/* First Page - Hero */}
         <div id="home" className="bg-white">
-          <HeroSection />
+          <HeroSection 
+            loginFormOpen={loginFormOpen} 
+            setLoginFormOpen={setLoginFormOpen} 
+          />
         </div>
 
         {/* Second Page - Features */}
