@@ -414,3 +414,17 @@ CREATE INDEX idx_rental_requests_requester_id ON rental_requests(requester_id);
 CREATE INDEX idx_rental_requests_status ON rental_requests(status);
 CREATE INDEX idx_rental_requests_created_at ON rental_requests(created_at);
 
+CREATE TABLE IF NOT EXISTS reports (
+    id SERIAL PRIMARY KEY,
+    reporter_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    reported_user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    report_reason VARCHAR(255) NOT NULL,
+    report_details TEXT NOT NULL,
+    status VARCHAR(20) DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_reports_reporter ON reports(reporter_id);
+CREATE INDEX IF NOT EXISTS idx_reports_reported_user ON reports(reported_user_id);
+CREATE INDEX IF NOT EXISTS idx_reports_status ON reports(status);
